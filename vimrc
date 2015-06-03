@@ -1,5 +1,6 @@
 set nocompatible              " be iMproved, required
 
+" vim-plug https://github.com/junegunn/vim-plug
 let g:plug_threads=1
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.vim/bundle')
