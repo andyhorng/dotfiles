@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 export SHELL=zsh
-export RBENV_ROOT=/usr/local/var/rbenv
+# export RBENV_ROOT=/usr/local/var/rbenv
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -58,6 +58,7 @@ alias ..='cd ..'
 alias mypy='. /Users/andy/workspace/virtualenv/bin/activate'
 
 alias php_ctags='ctags -R --fields=+l --links=no -V --exclude=tags'
+alias vim='nvim'
 
 # copy & paste
 alias copy=pbcopy
@@ -123,8 +124,6 @@ if [[ -s /home/andy/.rvm/scripts/rvm ]] ; then source /home/andy/.rvm/scripts/rv
 export LANG=en_US.UTF-8
 export LC_ALL="en_US.UTF-8"
 
-eval "$(rbenv init -)"
-
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
 # phpbrew
@@ -145,18 +144,4 @@ function agvim () {
   vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 
-export DOCKER_TLS_VERIFY=1
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/andy/.boot2docker/certs/boot2docker-vm
-
-# Google Compute Engine
-alias pods="gcloud preview container --zone asia-east1-b pods --cluster-name salt-dev"
-alias services="gcloud preview container --zone asia-east1-b services --cluster-name salt-dev"
-alias replicas="gcloud preview container replicationcontrollers --cluster-name salt-dev --zone asia-east1-b"
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/andy/google-cloud-sdk/path.zsh.inc'
-
-# The next line enables bash completion for gcloud.
-source '/Users/andy/google-cloud-sdk/completion.zsh.inc'
-
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -1,4 +1,4 @@
- -- Load Extensions
+-- Load Extensions
 local application = require "mjolnir.application"
 local window = require "mjolnir.window"
 local hotkey = require "mjolnir.hotkey"
