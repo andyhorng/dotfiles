@@ -37,7 +37,7 @@ Plug 'Specky'
 " Plugin 'pyflakes.vim'
 " Plugin 'Lokaltog/vim-powerline'
 Plug 'bling/vim-airline'
-Plug 'https://github.com/kevinw/pyflakes-vim.git'
+" Plug 'https://github.com/kevinw/pyflakes-vim.git'
 " Plugin 'https://github.com/Shougo/neosnippet.git'
 " Plugin 'https://github.com/altercation/vim-colors-solarized.git'
 Plug 'chriskempson/base16-vim'
@@ -69,7 +69,13 @@ Plug 'kshenoy/vim-signature'
 Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-commentary'
+Plug 'ElmCast/elm-vim'
+" Plug 'lambdatoast/elm.vim'
 " Plug 'Townk/vim-autoclose'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'https://github.com/davidhalter/jedi-vim'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 
 " All of your Plugins must be added before the following line
@@ -191,6 +197,14 @@ augroup filetype_haskell
   autocmd FileType haskell set nospell
 augroup END
 
+
+" --------- haskell
+augroup elm
+  " Clear old autocmds in group
+  autocmd!
+  autocmd FileType elm set sw=4 sts=4
+augroup END
+
 " golang
 augroup golang
   autocmd!
@@ -310,6 +324,7 @@ augroup END
 " nnoremap <leader>o o<ESC>ko<CR>
 " nnoremap <leader>O O<ESC>O<CR>
 
+nnoremap <C-p> :Files<CR>
 " copy
 vnoremap <C-c> "*y
 
@@ -553,7 +568,6 @@ function! PecoOpen()
   execute "silent !echo -e \\033c"
   redraw!
 endfunction
-nnoremap <C-p> :call PecoOpen()<CR>
 
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
@@ -699,6 +713,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-h>"
 let g:UltiSnipsSnippetsDir="~/.vim/bundle/ultisnips/UltiSnips"
 
+let g:ycm_python_binary_path = 'python'
+
 
 let g:ackprg = 'ag --nogroup --nocolor -S '
 
@@ -716,3 +732,18 @@ highlight clear FoldColumn
 let g:gitgutter_sign_added = '»'
 let g:gitgutter_sign_modified = '⌁'
 let g:gitgutter_sign_removed = '«'
+
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+
+
+let g:elm_format_autosave = 1

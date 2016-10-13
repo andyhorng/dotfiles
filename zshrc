@@ -79,7 +79,7 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # set PATH
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH:/opt/jruby/bin:/opt/bin
-export EDITOR=vim
+export EDITOR=nvim
 export PATH=$PATH:~/.rbenv/bin
 export PATH=$PATH:/usr/local/smlnj/bin
 export PATH=$PATH:~/Library/Haskell/bin
