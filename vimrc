@@ -76,7 +76,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/davidhalter/jedi-vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
+Plug 'slim-template/vim-slim'
+Plug 'morhetz/gruvbox'
+Plug 'luochen1990/rainbow'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -141,7 +143,8 @@ endif
 
 " Syntax color
 set background=dark
-color smyck
+" color smyck
+colorscheme gruvbox
 " let base16colorspace=256  " Access colors present in 256 colorspace
 
 " tags
@@ -663,7 +666,7 @@ let g:tagbar_autoclose=0
 
 
 " NERDTree
-let NERDTreeIgnore = ['\.class$']
+let NERDTreeIgnore = ['\.class$', '\.pyc$']
 let NERDTreeBookmarksFile='./.NERDTreeBookmarks'
 
 "smooth scroll
@@ -747,3 +750,4 @@ let g:NERDTreeIndicatorMapCustom = {
 
 
 let g:elm_format_autosave = 1
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
