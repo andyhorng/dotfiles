@@ -71,7 +71,7 @@ alias gidi='git diff'
 alias gipuupma='git pull upstream master'
 
 # urldecode
-alias urldecode=pbpaste | python -c "import sys, urllib as ul; print ul.unquote_plus(sys.stdin.readline())" | pbcopy
+alias urldecode='pbpaste | python3 -c "import sys; from urllib import parse ; print(parse.unquote(sys.stdin.readline()))" | pbcopy'
 
 # End of alias
 #
@@ -79,7 +79,7 @@ export LSCOLORS="exfxcxdxbxegedabagacad"
 
 # set PATH
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/sbin:/usr/local/bin:$PATH:/opt/jruby/bin:/opt/bin
-export EDITOR=nvim
+export EDITOR="nvim"
 export PATH=$PATH:~/.rbenv/bin
 export PATH=$PATH:/usr/local/smlnj/bin
 export PATH=$PATH:~/Library/Haskell/bin
