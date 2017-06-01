@@ -27,7 +27,7 @@ ZSH_THEME="steeef"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-syntax-highlighting history-substring-search osx brew sublime) 
+plugins=(git zsh-syntax-highlighting history-substring-search osx sublime) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -61,8 +61,13 @@ alias php_ctags='ctags -R --fields=+l --links=no -V --exclude=tags'
 alias vim='nvim'
 
 # copy & paste
-alias copy=pbcopy
-alias paste=pbpaste
+if [[ `uname` == 'Darwin' ]]
+then 
+  alias copy=pbcopy
+  alias paste=pbpaste
+  # urldecode
+  alias urldecode=pbpaste | python -c "import sys, urllib as ul; print ul.unquote_plus(sys.stdin.readline())" | pbcopy
+fi
 
 # git
 alias gist='git status'
@@ -70,8 +75,6 @@ alias gich='git checkout'
 alias gidi='git diff'
 alias gipuupma='git pull upstream master'
 
-# urldecode
-alias urldecode=pbpaste | python -c "import sys, urllib as ul; print ul.unquote_plus(sys.stdin.readline())" | pbcopy
 
 # End of alias
 #

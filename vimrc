@@ -11,32 +11,26 @@ call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
 
 " My Bundles
-Plug 'The-NERD-tree'
-Plug 'desert256.vim'
+Plug 'scrooloose/nerdtree'
 " Plugin 'neocomplcache'
-Plug 'Align'
 " Plugin 'taglist.vim'
 " Plugin 'rails.vim'
 " Plugin 'Smooth-Scroll'
 Plug 'jlanzarotta/bufexplorer'
 " Plugin 'Solarized'
-Plug 'JavaScript-Indent'
-Plug 'Tagbar'
+Plug 'majutsushi/tagbar'
 " Plugin 'unite.vim'
 " Plugin 'javacomplete'
 " Plugin 'JavaImp.vim--Lee'
-Plug 'Mark'
 " Plugin 'DirDiff.vim'
 Plug 'scrooloose/syntastic'
 " for rspec plugin
-Plug 'Specky'
 " Plugin 'maven2.vim'
 " Plugin 'ctrlp.vim'
 " Plugin 'UltiSnips'
 " Plugin 'ShowMarks'
 " Plugin 'pyflakes.vim'
-" Plugin 'Lokaltog/vim-powerline'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
 " Plug 'https://github.com/kevinw/pyflakes-vim.git'
 " Plugin 'https://github.com/Shougo/neosnippet.git'
 " Plugin 'https://github.com/altercation/vim-colors-solarized.git'
@@ -48,14 +42,11 @@ Plug 'https://github.com/tpope/vim-fugitive.git'
 Plug 'mileszs/ack.vim'
 " Plugin 'xolox/vim-easytags'
 " Plugin 'orenhe/pylint.vim'
-Plug 'vim-coffee-script'
 " Plug 'AutoTag'
 Plug 'https://github.com/arnaud-lb/vim-php-namespace.git'
 Plug 'https://github.com/tpope/vim-haml.git'
-Plug 'EasyMotion'
-Plug 'jade.vim'
+Plug 'easymotion/vim-easymotion'
 " Plugin 'joonty/vdebug.git'
-Plug 'editorconfig-vim'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe'
@@ -84,7 +75,8 @@ Plug 'luochen1990/rainbow'
 call plug#end()            " required
 
 " Put your non-Plugin stuff after this line
-set clipboard=unnamed
+" set clipboard=unnamed
+set clipboard+=unnamedplus
 
 set nocompatible " We're running Vim, not Vi!
 
@@ -686,7 +678,7 @@ let g:speckyRunSpecCmd = "rspec -r ~/.vim/bundle/Specky/ruby/specky_formatter.rb
 let g:pyflakes_use_quickfix = 0
 
 " powerline
-let g:Powerline_symbols = 'fancy'
+" let g:Powerline_symbols = 'fancy'
 
 " hi MarkWord1  ctermbg=Red      ctermfg=Black  guibg=#FF7272    guifg=Black
 " hi MarkWord2  ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
@@ -699,7 +691,7 @@ let g:Powerline_symbols = 'fancy'
 " let g:vdebug_options['path_maps'] = {}
 
 " airline configure
-let g:airline_powerline_fonts=1
+" let g:airline_powerline_fonts=1
 " let g:airline_symbols = {}
 " let g:airline_left_sep = ''
 " let g:airline_left_alt_sep = ''
