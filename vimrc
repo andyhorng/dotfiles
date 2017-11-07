@@ -48,7 +48,7 @@ Plug 'https://github.com/tpope/vim-haml.git'
 Plug 'easymotion/vim-easymotion'
 " Plugin 'joonty/vdebug.git'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'Valloric/YouCompleteMe'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -133,6 +133,10 @@ if has("gui_macvim")
   colors desertEx
 endif
 
+" Neovim related
+let g:python_host_prog="/Users/andyhung/workspace/neovim_venv/py2/bin/python"
+let g:python3_host_prog="/Users/andyhung/workspace/neovim_venv/py3/bin/python"
+
 " Syntax color
 set background=dark
 " color smyck
@@ -216,6 +220,7 @@ augroup filetype_javascript
   autocmd!
 augroup END
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_python_checkers = ['pyflakes', 'python']
 
 " C
 augroup c_code

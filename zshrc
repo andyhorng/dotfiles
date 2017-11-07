@@ -2,6 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 export SHELL=zsh
 # export RBENV_ROOT=/usr/local/var/rbenv
+export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -90,7 +91,6 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export PATH=$PATH:~/bin
 
 # java
-export JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 export PATH=$PATH:$JAVA_HOME/bin
 # android home
 export AND_HOME=$HOME/android-sdk-linux
@@ -162,6 +162,10 @@ export NVM_DIR="/Users/andyhung/.nvm"
 
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+
 eval "$(pyenv init -)"
 
 source ~/.cargo/env
