@@ -70,6 +70,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slim-template/vim-slim'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
+Plug 'nanotech/jellybeans.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -140,7 +141,8 @@ let g:python3_host_prog="/Users/andyhung/workspace/neovim_venv/py3/bin/python"
 " Syntax color
 set background=dark
 " color smyck
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme jellybeans
 " let base16colorspace=256  " Access colors present in 256 colorspace
 
 " tags

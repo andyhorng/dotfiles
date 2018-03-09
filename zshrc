@@ -2,13 +2,13 @@
 export ZSH=$HOME/.oh-my-zsh
 export SHELL=zsh
 # export RBENV_ROOT=/usr/local/var/rbenv
-export JAVA_HOME="$(/usr/libexec/java_home)"
+# export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="steeef"
+ZSH_THEME="ys"
 # ZSH_THEME="smt"
 
 # Set to this to use case-sensitive completion
@@ -121,7 +121,7 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin
 # export PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 
 # private bin
-if [[ -s /home/andy/.rvm/scripts/rvm ]] ; then source /home/andy/.rvm/scripts/rvm ; fi
+# if [[ -s /home/andy/.rvm/scripts/rvm ]] ; then source /home/andy/.rvm/scripts/rvm ; fi
 
 export LANG=en_US.UTF-8
 export LC_ALL="en_US.UTF-8"
@@ -135,7 +135,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 source "$ZSH/plugins/history-substring-search/history-substring-search.zsh"
 
 # added by travis gem
-[ -f /Users/andy/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
+# [ -f /Users/andy/.travis/travis.sh ] && source /Users/andy/.travis/travis.sh
 
 # Base16 Shell
 BASE16_SCHEME="default"
@@ -148,8 +148,8 @@ function agvim () {
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export NVM_DIR="/Users/andyhung/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+# export NVM_DIR="/Users/andyhung/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # The next line updates PATH for the Google Cloud SDK.
 # source '/Users/andyhung/Downloads/google-cloud-sdk/path.zsh.inc'
@@ -160,8 +160,8 @@ export NVM_DIR="/Users/andyhung/.nvm"
 [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
-source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+# source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
+# source /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
