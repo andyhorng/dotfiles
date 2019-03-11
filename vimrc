@@ -11,12 +11,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'gmarik/Vundle.vim'
 
 " My Bundles
-Plug 'scrooloose/nerdtree'
 " Plugin 'neocomplcache'
 " Plugin 'taglist.vim'
 " Plugin 'rails.vim'
 " Plugin 'Smooth-Scroll'
-Plug 'jlanzarotta/bufexplorer'
+" Plug 'jlanzarotta/bufexplorer'
 " Plugin 'Solarized'
 Plug 'majutsushi/tagbar'
 " Plugin 'unite.vim'
@@ -66,11 +65,20 @@ Plug 'ElmCast/elm-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/davidhalter/jedi-vim'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slim-template/vim-slim'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'nanotech/jellybeans.vim'
+Plug 'chr4/nginx.vim'
+" Plug 'christoomey/vim-tmux-navigator'
+Plug 'phenomenes/ansible-snippets'
+Plug 'bhurlow/vim-parinfer'
+Plug 'tpope/vim-vinegar'
+Plug 'inkarkat/vim-ingo-library'
+Plug 'inkarkat/vim-mark'
+
+
+
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -133,10 +141,6 @@ if has("gui_macvim")
   set guioptions-=T
   colors desertEx
 endif
-
-" Neovim related
-let g:python_host_prog="/Users/andyhung/workspace/neovim_venv/py2/bin/python"
-let g:python3_host_prog="/Users/andyhung/workspace/neovim_venv/py3/bin/python"
 
 " Syntax color
 set background=dark
@@ -215,7 +219,7 @@ augroup golang
   let g:go_fmt_command = "goimports"
   let g:go_doc_keywordprg_enabled = 0
   set foldmethod=syntax 
-  set foldlevel=4
+  set foldlevel=7
 augroup END
 
 augroup filetype_javascript
@@ -326,7 +330,8 @@ augroup END
 " nnoremap <leader>o o<ESC>ko<CR>
 " nnoremap <leader>O O<ESC>O<CR>
 
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
+
 " copy
 vnoremap <C-c> "*y
 
@@ -337,13 +342,9 @@ map <RIGHT> <C-F>
 map <LEFT> <C-B>
 
 
-
 " easy motion
 nmap <space> \\f
 nmap <space><space> \\F
-
-" mark
-map K \m
 
 " wrap line
 map k gk
@@ -364,34 +365,26 @@ nnoremap <leader>p <ESC>:set invpaste<CR><ESC>:set paste?<CR>i
 " indent
 nnoremap <leader>i <ESC>ggVG==
 
+tnoremap <Esc> <C-\><C-n>
+
+
 " tag list, nnoremap avoid nested map
-nmap <F1> <ESC>:tabnew ~/.vimrc<CR>
+nmap <F1> <ESC>:e ~/.vimrc<CR>
 imap <F1> <ESC>
 " autocmd BufWritePost ~/.vimrc echo "auto source!" | source ~/.vimrc
 
 
-nnoremap <F2> <ESC>:tabnew<CR>
-nnoremap <F3> <ESC>:Gstat<CR>
 
+" nnoremap <F2> <ESC>:tabnew<CR>
+" nnoremap <F3> <ESC>:Gstat<CR>
 
-" nnoremap <F4> <ESC>:NERDTreeToggle<CR>
-nnoremap <F4> <ESC>:call NERDTreeFindToggle()<CR>
-" nnoremap <F5> <ESC>:call NeoCnippetEditToggle()<CR>
+" let g:airline#extensions#tabline#enabled = 1
 
-" let g:neosnippet#snippets_directory = $HOME.'/.vim/snippets/'
-
-function! NeoCnippetEditToggle()
-  if matchend(bufname(winbufnr(0)), ".snip") != -1
-    bprevious
-  else
-    NeoSnippetEdit
-  endif
-endfunction
 
 " nnoremap <F5> <ESC>gT
 " noremap <F6> <ESC>gt
-nnoremap <C-L> gt
-nnoremap <C-H> gT
+" nnoremap <C-L> :bnext<CR>
+" nnoremap <C-H> :bprev<CR>
 nnoremap <C-K> <ESC>:silent! call TagMove(0)<CR>
 nnoremap <C-J> <ESC>:silent! call TagMove(1)<CR>
 " disable autocomplpop.vim
@@ -444,58 +437,6 @@ function! PreviewOrQFixExist()
   return 0
 endfunction
 
-function! NERDTreeFindToggle()
-    if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) != -1
-        NERDTreeClose
-    else
-      if filereadable(expand("%:p"))
-        NERDTreeFind
-      else 
-        NERDTree
-      endif
-    endif
-endfunction
-
-
-command! -nargs=0 Coding call CloseNERDTreeAndTagbar()
-function! CloseNERDTreeAndTagbar()
-    let w:jumpbacktohere = 1
-
-    " Detect which plugins are open
-    if exists('t:NERDTreeBufName')
-        let nerdtree_open = bufwinnr(t:NERDTreeBufName) != -1
-    else
-        let nerdtree_open = 0
-    endif
-    let tagbar_open = bufwinnr('__Tagbar__') != -1
-
-    " Perform the appropriate action
-    if nerdtree_open
-        NERDTreeClose
-    endif
-
-    if tagbar_open
-        TagbarClose
-    endif
-
-    " Jump back to the original window
-    for window in range(1, winnr('$'))
-        execute window . 'wincmd w'
-        if exists('w:jumpbacktohere')
-            unlet w:jumpbacktohere
-            break
-        endif
-    endfor
-endfunction
-" nnoremap <leader> :call ToggleNERDTreeAndTagbar()<CR><leader>
-" Unite find file recursively
-" Unite find file recursively
-nnoremap <leader>uf <ESC>:call CloseNERDTreeAndTagbar()<CR>:NERDTreeClose<CR>:Unite file_rec<CR>
-nnoremap <leader>ut <ESC>:call CloseNERDTreeAndTagbar()<CR>:NERDTreeClose<CR>:Unite tab<CR>
-nnoremap <leader>us <ESC>:call CloseNERDTreeAndTagbar()<CR>:NERDTreeClose<CR>:Unite source<CR>
-nnoremap <leader>ub <ESC>:call CloseNERDTreeAndTagbar()<CR>:NERDTreeClose<CR>:Unite buffer<CR>
-let g:unite_enable_start_insert = 1
-
 " insert mode map
 " inoremap "" ""<LEFT>
 " inoremap '' ''<LEFT>
@@ -519,154 +460,12 @@ function! SudoWrite()
   write !sudo tee %
 endfunction
 
-" Display shell commands' output on Vim window
-command! -complete=shellcmd -nargs=+ Shell call s:RunShellCommand(<q-args>)
-function! s:RunShellCommand(cmdline)
-  echo a:cmdline
-  let expanded_cmdline = a:cmdline
-  for part in split(a:cmdline, ' ')
-    if part[0] =~ '\v[%#<]'
-      let expanded_part = fnameescape(expand(part))
-      let expanded_cmdline = substitute(expanded_cmdline, part, expanded_part, '')
-    endif
-  endfor
-  botright new
-  setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap
-  "	call setline(1, 'You entered:    ' . a:cmdline)
-  "	call setline(2, 'Expanded Form:  ' .expanded_cmdline)
-  "	call setline(3,substitute(getline(2),'.','=','g'))
-  execute '$read !'. expanded_cmdline
-  setlocal nomodifiable
-  1
-endfunction
-
-function! OpenSpace(o)
-  if(a:o == "o") 
-    call append(line("."), "")
-    call cursor(line(".") + 1, 0)
-  else
-    call append(line(".") - 1, "")
-    call cursor(line(".") - 1, 0)
-  endif
-
-  let s = prevnonblank(line(".")) + 1
-  let e = nextnonblank(line(".")) - 1
-  
-  execute s . "," . e . "delete"
-
-  normal OO 
-  startinsert
-
-  
-  " call append(line(".") - 1, ["", "", ""])
-
-  " call cursor(line(".") - 1, 0)
-endfunction
-
-function! PecoOpen()
-  for filename in split(system("ag -g . | peco"), "\n")
-    execute "e" filename
-  endfor
-  execute "silent !echo -e \\033c"
-  redraw!
-endfunction
-
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-    \ }
-" 
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-" imap <TAB>     <Plug>(neocomplcache_snippets_expand)
-" smap <TAB>     <Plug>(neocomplcache_snippets_expand)
-" inoremap <expr><C-g>     neocomplcache#undo_completion()
-" inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-" inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplcache#close_popup()
-" inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-" Neosnippet
-" Plugin key-mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
-" imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-
-" AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
-endif
-"let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-"let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-
 " taglist
 let Tlist_Use_Right_Window = 1
 
 " tagbar
 let g:tagbar_autoclose=0
 
-
-" NERDTree
-let NERDTreeIgnore = ['\.class$', '\.pyc$']
-let NERDTreeBookmarksFile='./.NERDTreeBookmarks'
 
 "smooth scroll
 " let g:scroll_factor = 0
@@ -686,14 +485,6 @@ let g:pyflakes_use_quickfix = 0
 
 " powerline
 " let g:Powerline_symbols = 'fancy'
-
-" hi MarkWord1  ctermbg=Red      ctermfg=Black  guibg=#FF7272    guifg=Black
-" hi MarkWord2  ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
-" hi MarkWord3  ctermbg=Yellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
-" hi MarkWord4  ctermbg=Cyan     ctermfg=Black  guibg=#8CCBEA    guifg=Black
-" hi MarkWord5  ctermbg=Green    ctermfg=Black  guibg=#A4E57E    guifg=Black
-" hi MarkWord6  ctermbg=Blue     ctermfg=Black  guibg=#9999FF    guifg=Black
-
 
 " let g:vdebug_options['path_maps'] = {}
 
@@ -731,22 +522,3 @@ endfunction
 
 highlight clear SignColumn
 highlight clear FoldColumn
-let g:gitgutter_sign_added = '»'
-let g:gitgutter_sign_modified = '⌁'
-let g:gitgutter_sign_removed = '«'
-
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-
-
-let g:elm_format_autosave = 1
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
