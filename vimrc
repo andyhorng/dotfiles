@@ -43,7 +43,7 @@ Plug 'mileszs/ack.vim'
 " Plugin 'xolox/vim-easytags'
 " Plugin 'orenhe/pylint.vim'
 " Plug 'AutoTag'
-Plug 'https://github.com/arnaud-lb/vim-php-namespace.git'
+" Plug 'https://github.com/arnaud-lb/vim-php-namespace.git'
 Plug 'https://github.com/tpope/vim-haml.git'
 Plug 'easymotion/vim-easymotion'
 " Plugin 'joonty/vdebug.git'
@@ -70,6 +70,12 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'slim-template/vim-slim'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'StanAngeloff/php.vim'
+Plug '2072/PHP-Indenting-for-VIm'
+Plug 'bhurlow/vim-parinfer'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -108,6 +114,8 @@ set lazyredraw
 set magic
 set showmatch 
 set mat=2
+set autoindent
+set smartindent
 
 " No annoying sound on errors
 set noerrorbells
@@ -200,6 +208,16 @@ augroup elm
   autocmd FileType elm set sw=4 sts=4
 augroup END
 
+augroup php
+  autocmd!
+  autocmd FileType php set sw=4 sts=4 cindent
+augroup END
+
+augroup pug
+  autocmd!
+  autocmd! FileType pug set sw=4 sts=4
+augroup END
+
 " golang
 augroup golang
   autocmd!
@@ -212,6 +230,11 @@ augroup golang
   set foldlevel=4
 augroup END
 
+
+augroup clojure
+  set foldlevel=99
+augroup END
+
 augroup filetype_javascript
   autocmd!
 augroup END
@@ -221,20 +244,6 @@ let g:syntastic_javascript_checkers = ['eslint']
 augroup c_code
   autocmd!
   autocmd FileType c,h set ai sw=8 sts=8
-augroup END
-
-" PHP
-augroup php
-  autocmd!
-  autocmd FileType php set sw=4 sts=4 foldmethod=indent
-  " insert use statement
-  autocmd FileType php imap <buffer> <Leader>u <C-O>:call PhpInsertUse()<CR><RIGHT>
-  autocmd FileType php map <buffer> <Leader>u :call PhpInsertUse()<CR>
-  autocmd FileType php imap <buffer> <Leader>e <C-O>:call PhpExpandClass()<CR>
-  autocmd FileType php map <buffer> <Leader>e :call PhpExpandClass()<CR>
-  autocmd FileType php set foldmethod=indent
-  autocmd FileType php set foldlevel=4
-  " autocmd BufWritePost *.php !php -l %
 augroup END
 
 " HAML
@@ -319,7 +328,7 @@ augroup END
 " nnoremap <leader>o o<ESC>ko<CR>
 " nnoremap <leader>O O<ESC>O<CR>
 
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :GFiles<CR>
 " copy
 vnoremap <C-c> "*y
 
@@ -649,6 +658,7 @@ endif
 let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
 let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
+let PHP_removeCRwhenUnix=1
 
 " taglist
 let Tlist_Use_Right_Window = 1
@@ -701,7 +711,7 @@ let g:pyflakes_use_quickfix = 0
 " let g:airline_symbols.readonly = ''
 " let g:airline_symbols.linenr = ''
 
-let g:ycm_filetype_specific_completion_to_disable = {'php': 'true'}
+" let g:ycm_filetype_specific_completion_to_disable = {'php': 'true'}
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
