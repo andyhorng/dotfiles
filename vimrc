@@ -19,6 +19,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
+Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chr4/nginx.vim'
 Plug 'phenomenes/ansible-snippets'
@@ -57,6 +58,8 @@ set lazyredraw
 set magic
 set showmatch 
 set mat=2
+set autoindent
+set smartindent
 set noerrorbells
 set novisualbell
 set t_vb=
@@ -83,8 +86,7 @@ runtime! macros/matchit.vim
 highlight clear SignColumn
 highlight clear FoldColumn
 
-" --- Maps ---
-"
+" --- Key Maps ---
 nnoremap <C-p> :Files<CR>
 map <UP> <C-Y>
 map <DOWN> <C-E>
@@ -98,9 +100,7 @@ tnoremap <Esc> <C-\><C-n>
 nnoremap <C-K> <ESC>:cp<CR>
 nnoremap <C-J> <ESC>:cn<CR>
 
-
 " --- Plugin Configs ---
-
 let g:ackprg = 'ag --nogroup --nocolor -S '
 let g:conjure_fold_multiline_results=v:true
 let g:conjure_log_direction="horizontal"
