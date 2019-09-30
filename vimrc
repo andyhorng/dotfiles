@@ -15,17 +15,16 @@ Plug 'fatih/vim-go'
 Plug 'kshenoy/vim-signature'
 Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/goyo.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
 Plug 'luochen1990/rainbow'
 Plug 'morhetz/gruvbox'
 Plug 'nanotech/jellybeans.vim'
 Plug 'chr4/nginx.vim'
 Plug 'phenomenes/ansible-snippets'
-Plug 'bhurlow/vim-parinfer'
+Plug 'eraserhd/parinfer-rust'
 Plug 'Olical/conjure', { 'tag': 'v1.0.2', 'do': 'bin/compile'  }
 Plug 'chrisbra/Colorizer'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
@@ -87,18 +86,15 @@ highlight clear SignColumn
 highlight clear FoldColumn
 
 " --- Key Maps ---
-nnoremap <C-p> :Files<CR>
+nnoremap <C-p> :CocList<CR>
+nmap <space><space> <Plug>(easymotion-overwin-f)
 map <UP> <C-Y>
 map <DOWN> <C-E>
 map <RIGHT> <C-F>
 map <LEFT> <C-B>
 map k gk
 map j gj
-nmap <space> \\f
-nmap <space><space> \\F
 tnoremap <Esc> <C-\><C-n>
-nnoremap <C-K> <ESC>:cp<CR>
-nnoremap <C-J> <ESC>:cn<CR>
 
 " --- Plugin Configs ---
 let g:ackprg = 'ag --nogroup --nocolor -S '
@@ -106,3 +102,5 @@ let g:conjure_fold_multiline_results=v:true
 let g:conjure_log_direction="horizontal"
 let g:conjure_log_auto_close=v:false
 let g:colorizer_auto_color = 1
+let g:coc_global_extensions = ['coc-conjure']
+let g:ale_linters = {'clojure': ['clj-kondo']}
